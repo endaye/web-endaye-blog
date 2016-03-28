@@ -190,7 +190,7 @@ header li:last-child a {
 }
 
 header ul a {
-  line-height:1;
+  line-height:1.5;
   font-size:11px;
   color:#999;
   display:block;
