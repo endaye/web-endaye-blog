@@ -1,4 +1,10 @@
 $(document).ready(function(){
+	var f = function() {
+		$("p").click(function(){
+			$(this).hide();
+		});
+	}
+
 	$(function(){
 		$("#includedHeader").load("/html/header.html"); 
 	});
@@ -8,13 +14,8 @@ $(document).ready(function(){
 	});
 
 	$(function(){
-		$("#includedContent").load("/blog/blog-list.html");
+		$("#includedContent").load("/blog/blog-list.html", f);
 	});
 });
 
-$("button").click(function(){
-	$.ajax({url: "/index.html", success: function(result){
-		$("#includedContent").html(result);
-	}});
-});
 
