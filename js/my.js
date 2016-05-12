@@ -1,9 +1,15 @@
 $(document).ready(function(){
 	var f = function() {
-		$("p").click(function(){
-			$(this).hide();
+		$(".article-title").click(function(){
+			$("#includedContent").load("/blog/blog-20150611.html", g);
 		});
-	}
+	};
+
+	var g = function() {
+		$(".back-to-blog-list").click(function(){
+			$("#includedContent").load("/blog/blog-list.html", f);
+		});
+	};
 
 	$(function(){
 		$("#includedHeader").load("/html/header.html"); 
