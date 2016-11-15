@@ -4,7 +4,9 @@ $(document).ready(function(){
         var blogs = document.getElementsByClassName("article-title");
         for (var i = 0; i < blogs.length; i++) {
             var blog = blogs[i];
-            blog.getElementsByTagName("d")[0].innerHTML = blog.getAttribute("id");
+            var blogId = blog.getAttribute("id");
+            var blogDate = blogId.substr(0,4) + "-" + blogId.substr(4,2) + "-" + blogId.substr(6,2);
+            blog.getElementsByTagName("d")[0].innerHTML = blogDate;
         }
     }
 
@@ -17,6 +19,7 @@ $(document).ready(function(){
     };
 
 	var g = function() {
+	    $(".back-to-blog-list").innerHTML = "<i class='fa fa-arrow-left' aria-hidden='true'></i>Back to Home";
 		$(".back-to-blog-list").click(function(){
 			$("#includedContent").load("blog/blog-list.html", f);
 		});
