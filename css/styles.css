@@ -286,3 +286,8 @@ footer {
     color:#444;
   }
 }
+
+/* my custom style */
+.article-title d {
+  color: #444;
+}
