@@ -30,11 +30,14 @@
             <div>
                 <h4><span class="label label-default">算法流程</span></h4>
                 <ol>
-                    <li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
-                    <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
-                    <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+                    <li>一共N个元素<code>arr[N]</code>，从<code>arr[0]</code>到<code>arr[n-1]</code>。</li>
+                    <li>两层<code>for</code>循环，外层<code>i</code>，内层<code>j</code></li>
+                    <li>比较相邻的元素。如果第一个比第二个大，就交换他们两个（降序反之）。<br><code>switch(arr[j], arr[j+1])</code></li>
+                    <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。<br>
+                        在这一点，最后的元素应该会是最大的数。<code>j = 0 to n-1-i</code><br>
+                        <strong>这里最重要的就<code>n-1-i</code></strong>，因为随着<code>i</code>增大，<code>arr</code>后面被排序好的大数就越多。</li>
+                    <li>针对所有的元素重复以上的步骤，除了最后一个。<code>i = 0 to n-2</code></li>
                     <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
-                    <li>由于它的简洁，冒泡排序通常被用来对于程序设计入门的学生介绍算法的概念。</li>
                 </ol>
                 <p>
                     <img src="http://blog.endaye.com/blog/img/img-20151115-bubble-sort-animation.gif"
@@ -44,12 +47,34 @@
             <div>
                 <h4><span class="label label-default">实例分析</span></h4>
                 <div>
-                    Click <a href="http://bubkoo.com/2014/01/12/sort-algorithm/bubble-sort/"
-                             target="_blank">here</a><br>
+                    <p>
+                        Click <a href="http://bubkoo.com/2014/01/12/sort-algorithm/bubble-sort/"
+                                 target="_blank">here</a>
+                    </p>
                 </div>
             </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
+                <pre><code>
+// Created by Yuancheng Zhang on 11/19/16.
+
+void BubbleSort(int * arr, const int N) {
+    int i, j;
+    int temp;
+
+    // arr[0], ... , arr[N-2], arr[N-2]
+    // 永远保持最后一个最大
+    for (i = 0; i < N - 1; i++) {
+        for (j = 0; j < N - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+                </code></pre>
             </div>
         </div>
     </div>
