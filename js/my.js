@@ -16,7 +16,10 @@ $(document).ready(function(){
     var g = function() {
         $(".article-title").click(function(){
             var blogId = (event.target).getAttribute("id");
-            $("#includedBlogContent").load("blog/blog-" + blogId + ".html");
+            $("#includedBlogContent").load("blog/blog-" + blogId + ".html", function () {
+                hljs.initHighlighting.called = false;
+                hljs.initHighlighting();
+            });
         });
         e();
     };

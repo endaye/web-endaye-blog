@@ -19,31 +19,38 @@
     <div id="blog-20161115-bubble">
         <h4><a href="#blog-20161115-bubble-content" data-toggle="collapse">冒泡排序 Bubble sort</a></h4>
         <div id="blog-20161115-bubble-content" class="collapse">
-            <h4><span class="label label-default">算法原理</span></h4>
-            <p><a href="#blog-20161115-bubble-content">冒泡排序</a>是最简单的排序。
-                它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。
-                走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。
-                这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
-            </p>
-            <p>
-                冒泡排序算法的流程如下：
-            <ol>
-                <li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
-                <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
-                <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
-                <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
-                <li>由于它的简洁，冒泡排序通常被用来对于程序设计入门的学生介绍算法的概念。</li>
-            </ol>
-            </p>
-            <p>
-                <img src="http://blog.endaye.com/blog/img/img-20151115-bubble-sort-animation.gif"
-                     alt="冒泡排序 Bubble Sort (图片来自维基百科)">
-            </p>
-            <h4><span class="label label-default">实例分析</span></h4>
             <div>
-                Click <a href="http://bubkoo.com/2014/01/12/sort-algorithm/bubble-sort/" target="_blank">here</a>.
+                <h4><span class="label label-default">算法原理</span></h4>
+                <p><a href="#blog-20161115-bubble-content">冒泡排序</a>是最简单的排序。
+                    它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。
+                    走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。
+                    这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
+                </p>
+                <p>
+                    冒泡排序算法的流程如下：
+                <ol>
+                    <li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+                    <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
+                    <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+                    <li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+                    <li>由于它的简洁，冒泡排序通常被用来对于程序设计入门的学生介绍算法的概念。</li>
+                </ol>
+                </p>
+                <p>
+                    <img src="http://blog.endaye.com/blog/img/img-20151115-bubble-sort-animation.gif"
+                         alt="冒泡排序 Bubble Sort (图片来自维基百科)">
+                </p>
             </div>
-            <h4><span class="label label-default">C++ 语言实现</span></h4>
+            <div>
+                <h4><span class="label label-default">实例分析</span></h4>
+                <div>
+                    Click <a href="http://bubkoo.com/2014/01/12/sort-algorithm/bubble-sort/"
+                             target="_blank">here</a><br>
+                </div>
+            </div>
+            <div>
+                <h4><span class="label label-default">C++ 语言实现</span></h4>
+            </div>
         </div>
     </div>
 
@@ -64,7 +71,49 @@
     </div>
 
     <div id="blog-20161115-shell">
-        <h4>希尔排序 Shellsort</h4>
+        <h4><a href="#blog-20161115-shell-content" data-toggle="collapse">希尔排序 Shellsort</a></h4>
+        <div id="blog-20161115-shell-content" class="collapse">
+            <div>
+                <h4><span class="label label-default">算法原理</span></h4>
+            </div>
+            <div>
+                <h4><span class="label label-default">实例分析</span></h4>
+            </div>
+            <div>
+                <h4><span class="label label-default">C++ 语言实现</span></h4>
+                <div>
+                    <pre><code>
+// Created by Yuancheng Zhang on 10/4/16.
+
+#include "shell_sort.h"
+
+/* shellsort: sort input_array[0]...intput_array[size-1] into increasing order */
+void ShellSort::Sort(int * input_array, const int input_array_size) {
+    int gap, i, j, temp;
+
+    // 最外层的for语句控制两个被比较元素之间的距离，从n/2开始，逐渐进行对折，直到距离为0
+    for (gap = input_array_size / 2; gap > 0; gap /= 2) {
+        // 中间层的for循环用于在元素间移动位置
+        for (i = gap; i < input_array_size; ++i) {
+            /*
+             * 最内层的for语句用于比价各对相距gap个位置对元素，当这两个元素逆序时把它们互关
+             * 由于gap的值最终要递减到1，因此所有元素最终都会位于正确的排序位置上
+             */
+            for (j = i - gap;
+                 j >= 0 && input_array[j] > input_array[j+gap];
+                 j -= gap) {
+                // switch [j] and [j+gap] values
+                temp = input_array[j];
+                input_array[j] = input_array[j+gap];
+                input_array[j+gap] = temp;
+            }
+        }
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="blog-20161115-merge">
@@ -96,3 +145,5 @@
     <!--总结ref: http://www.codeceo.com/article/10-sort-algorithm-interview.html -->
     <!--动画ref: https://www.toptal.com/developers/sorting-algorithms -->
 </div>
+
+<script>hljs.initHighlightingOnLoad();</script>
