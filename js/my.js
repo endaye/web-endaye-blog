@@ -11,19 +11,15 @@ $(document).ready(function(){
     }
 
     var f = function() {
+        $("#includedBlogList").load("blog/blog-list.html", g);
+    }
+    var g = function() {
         $(".article-title").click(function(){
             var blogId = (event.target).getAttribute("id");
-            $("#includedContent").load("blog/blog-" + blogId + ".html", g);
+            $("#includedBlogContent").load("blog/blog-" + blogId + ".html");
         });
         e();
     };
-
-	var g = function() {
-	    $(".back-to-blog-list").innerHTML = "<i class='fa fa-arrow-left' aria-hidden='true'></i>Back to Home";
-		$(".back-to-blog-list").click(function(){
-			$("#includedContent").load("blog/blog-list.html", f);
-		});
-	};
 
 	$(function(){
 		$("#includedHeader").load("html/header.html");
@@ -34,7 +30,7 @@ $(document).ready(function(){
 	});
 
 	$(function(){
-		$("#includedContent").load("blog/blog-list.html", f);
+		$("#includedContent").load("blog/blog-wapper.html", f);
 	});
 });
 
