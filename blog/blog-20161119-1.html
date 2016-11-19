@@ -1,0 +1,112 @@
+<div>
+    <h3>
+        Swap Algorithm
+    </h3>
+    <p>交换只有三种。代码背下来就好。</p>
+    <ul>
+        <li><a href="#blog-20161119-basic">普通交换</a></li>
+        <li><a href="#blog-20161119-xor">异或交换 XOR swap</a></li>
+        <li><a href="#blog-20161119-var">加减交换</a></li>
+    </ul>
+    <div id="blog-20161119-basic">
+        <h4>普通交换 swap</h4>
+        <div>
+            <h4><span class="label label-default">C++ 语言实现</span></h4>
+            <pre><code>
+// 普通交换
+void basicSwap (int *x, int *y) {
+    if (x != y) {
+        int temp;
+        temp = *x;
+        *x = *y;
+        *y = temp;
+    }
+}
+        </code></pre>
+        </div>
+    </div>
+
+    <div id="blog-20161119-xor">
+        <h4>异或交换 XOR swap</h4>
+        <div>
+            <h4><span class="label label-default">算法原理</span></h4>
+            <pre><code>
+X := X XOR Y
+Y := Y XOR X
+X := X XOR Y
+            </code></pre>
+        </div>
+        <div>
+            <h4><span class="label label-default">C++ 语言实现</span></h4>
+            <pre><code>
+// 异或交换
+void xorSwap (int *x, int *y) {
+    if (x != y) {
+        *x ^= *y;
+        *y ^= *x;
+        *x ^= *y;
+    }
+}
+
+// 优化后的单行异或交换
+void xorSwap (int *x, int *y) {
+    *x^=*y^(*y=*x);
+}
+            </code></pre>
+        </div>
+        <div>
+            <h4><span class="label label-default">优势</span></h4>
+            <p>
+                In most practical scenarios, the trivial swap algorithm using a temporary register is more efficient.
+                Limited situations in which XOR swapping may be practical include:
+            <ul>
+                <li>on a processor where the instruction set encoding permits the XOR swap to be encoded in a smaller
+                    number of bytes
+                </li>
+                <li>in a region with high register pressure, it may allow the register allocator to avoid spilling a
+                    register
+                </li>
+                <li>in microcontrollers where available RAM is very limited.</li>
+            </ul>
+            Because these situations are rare, most optimizing compilers do not generate XOR swap code.
+            </p>
+        </div>
+    </div>
+
+    <div id="blog-20161119-var">
+        <h4>加减交换</h4>
+        <div>
+            <h4><span class="label label-default">C++ 语言实现</span></h4>
+            <pre><code>
+// 加减交换
+void addSwap (unsigned int *x, unsigned int *y)
+{
+    if (x != y) {
+        *x = *x + *y;
+        *y = *x - *y;
+        *x = *x - *y;
+    }
+}
+            </code></pre>
+        </div>
+        <div>
+            <div>
+                <h4><span class="label label-default">注意</span></h4>
+            </div>
+            <p>
+                Unlike the XOR swap, this variation requires that the underlying processor or programming language uses
+                a
+                method such as <a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">modular
+                arithmetic</a> or
+                <a href="https://en.wikipedia.org/wiki/Bignum" target="_blank">bignums</a> to guarantee that the
+                computation of <code>X + Y</code>
+                cannot cause an error due to <a href="https://en.wikipedia.org/wiki/Integer_overflow" target="_blank">integer
+                overflow</a>. Therefore, it is seen even more rarely in practice than the XOR swap.
+            </p>
+            <p>
+                但是在C语言里就算整数溢出了也可以使用，因为C语言使用的是<a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">modular
+                arithmetic</a>。
+            </p>
+        </div>
+    </div>
+</div>
