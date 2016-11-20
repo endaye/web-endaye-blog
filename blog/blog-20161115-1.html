@@ -57,7 +57,8 @@
             </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
-                <pre><code>
+                <div>
+                    <pre><code>
 // Created by Yuancheng Zhang on 11/19/16.
 
 // 方法一：（递增）
@@ -76,8 +77,8 @@ void BubbleSort(int * arr, const int N) {
         }
     }
 }
-                </code></pre>
-                <pre><code>
+                    </code></pre>
+                    <pre><code>
 // 方法二：优化之后（递增）
 // i递减；
 // corner cases check
@@ -96,7 +97,8 @@ void BubbleSort(int * arr, const int N) {
         }
     }
 }
-                </code></pre>
+                    </code></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -139,7 +141,8 @@ void BubbleSort(int * arr, const int N) {
             </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
-                <pre><code>
+                <div>
+                    <pre><code>
 // Created by Yuancheng Zhang on 11/20/16.
 
 // （递增）
@@ -171,78 +174,8 @@ void SelectionSort(int * arr, const int N) {
     }
 }
 
-            </code></pre>
-            <pre><code>
-// A utility function to swap two elements
-void swap ( int* a, int* b )
-{
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
-
-/* This function is same in both iterative and recursive*/
-int partition (int arr[], int l, int h)
-{
-    int x = arr[h];
-    int i = (l - 1);
-
-    for (int j = l; j <= h- 1; j++)
-    {
-        if (arr[j] <= x)
-        {
-            i++;
-            swap (&arr[i], &arr[j]);
-        }
-    }
-    swap (&arr[i + 1], &arr[h]);
-    return (i + 1);
-}
-
-/* A[] --> Array to be sorted,
-   l  --> Starting index,
-   h  --> Ending index */
-void quickSortIterative (int arr[], int l, int h)
-{
-    // Create an auxiliary stack
-    int stack[ h - l + 1 ];
-
-    // initialize top of stack
-    int top = -1;
-
-    // push initial values of l and h to stack
-    stack[ ++top ] = l;
-    stack[ ++top ] = h;
-
-    // Keep popping from stack while is not empty
-    while ( top >= 0 )
-    {
-        // Pop h and l
-        h = stack[ top-- ];
-        l = stack[ top-- ];
-
-        // Set pivot element at its correct position
-        // in sorted array
-        int p = partition( arr, l, h );
-
-        // If there are elements on left side of pivot,
-        // then push left side to stack
-        if ( p-1 > l )
-        {
-            stack[ ++top ] = l;
-            stack[ ++top ] = p - 1;
-        }
-
-        // If there are elements on right side of pivot,
-        // then push right side to stack
-        if ( p+1 < h )
-        {
-            stack[ ++top ] = p + 1;
-            stack[ ++top ] = h;
-        }
-    }
-}
-            </code></pre>
+                    </code></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -293,7 +226,8 @@ void quickSortIterative (int arr[], int l, int h)
             </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
-                <pre><code>
+                <div>
+                    <pre><code>
 // Created by Yuancheng Zhang on 11/20/16.
 
 // （递增）
@@ -319,7 +253,8 @@ void InsertionSort::Sort(int * arr, const int N) {
         arr[j] = target;
     }
 }
-            </code></pre>
+                    </code></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -420,6 +355,77 @@ void ShellSort::Sort(int * input_array, const int input_array_size) {
                 input_array[j] = input_array[j+gap];
                 input_array[j+gap] = temp;
             }
+        }
+    }
+}
+                    </code></pre>
+                    <pre><code>
+// A utility function to swap two elements
+void swap ( int* a, int* b )
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/* This function is same in both iterative and recursive*/
+int partition (int arr[], int l, int h)
+{
+    int x = arr[h];
+    int i = (l - 1);
+
+    for (int j = l; j <= h- 1; j++)
+    {
+        if (arr[j] <= x)
+        {
+            i++;
+            swap (&arr[i], &arr[j]);
+        }
+    }
+    swap (&arr[i + 1], &arr[h]);
+    return (i + 1);
+}
+
+/* A[] --> Array to be sorted,
+   l  --> Starting index,
+   h  --> Ending index */
+void quickSortIterative (int arr[], int l, int h)
+{
+    // Create an auxiliary stack
+    int stack[ h - l + 1 ];
+
+    // initialize top of stack
+    int top = -1;
+
+    // push initial values of l and h to stack
+    stack[ ++top ] = l;
+    stack[ ++top ] = h;
+
+    // Keep popping from stack while is not empty
+    while ( top >= 0 )
+    {
+        // Pop h and l
+        h = stack[ top-- ];
+        l = stack[ top-- ];
+
+        // Set pivot element at its correct position
+        // in sorted array
+        int p = partition( arr, l, h );
+
+        // If there are elements on left side of pivot,
+        // then push left side to stack
+        if ( p-1 > l )
+        {
+            stack[ ++top ] = l;
+            stack[ ++top ] = p - 1;
+        }
+
+        // If there are elements on right side of pivot,
+        // then push right side to stack
+        if ( p+1 < h )
+        {
+            stack[ ++top ] = p + 1;
+            stack[ ++top ] = h;
         }
     }
 }
