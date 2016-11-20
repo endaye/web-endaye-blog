@@ -60,7 +60,7 @@
                 <pre><code>
 // Created by Yuancheng Zhang on 11/19/16.
 
-// 方法一：（数组递增）
+// 方法一：（递增）
 void BubbleSort(int * arr, const int N) {
     int i, j, temp;
 
@@ -76,8 +76,9 @@ void BubbleSort(int * arr, const int N) {
         }
     }
 }
-
-// 方法二：优化之后（数组递增）
+                </code></pre>
+                <pre><code>
+// 方法二：优化之后（递增）
 // i递减；
 // corner cases check
 // XOR swap
@@ -141,7 +142,7 @@ void BubbleSort(int * arr, const int N) {
                 <pre><code>
 // Created by Yuancheng Zhang on 11/20/16.
 
-// 数组递增
+// （递增）
 void SelectionSort(int * arr, const int N) {
     // 边界检查
     if(arr == 0 || N == 0)
@@ -170,6 +171,77 @@ void SelectionSort(int * arr, const int N) {
     }
 }
 
+            </code></pre>
+            <pre><code>
+// A utility function to swap two elements
+void swap ( int* a, int* b )
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/* This function is same in both iterative and recursive*/
+int partition (int arr[], int l, int h)
+{
+    int x = arr[h];
+    int i = (l - 1);
+
+    for (int j = l; j <= h- 1; j++)
+    {
+        if (arr[j] <= x)
+        {
+            i++;
+            swap (&arr[i], &arr[j]);
+        }
+    }
+    swap (&arr[i + 1], &arr[h]);
+    return (i + 1);
+}
+
+/* A[] --> Array to be sorted,
+   l  --> Starting index,
+   h  --> Ending index */
+void quickSortIterative (int arr[], int l, int h)
+{
+    // Create an auxiliary stack
+    int stack[ h - l + 1 ];
+
+    // initialize top of stack
+    int top = -1;
+
+    // push initial values of l and h to stack
+    stack[ ++top ] = l;
+    stack[ ++top ] = h;
+
+    // Keep popping from stack while is not empty
+    while ( top >= 0 )
+    {
+        // Pop h and l
+        h = stack[ top-- ];
+        l = stack[ top-- ];
+
+        // Set pivot element at its correct position
+        // in sorted array
+        int p = partition( arr, l, h );
+
+        // If there are elements on left side of pivot,
+        // then push left side to stack
+        if ( p-1 > l )
+        {
+            stack[ ++top ] = l;
+            stack[ ++top ] = p - 1;
+        }
+
+        // If there are elements on right side of pivot,
+        // then push right side to stack
+        if ( p+1 < h )
+        {
+            stack[ ++top ] = p + 1;
+            stack[ ++top ] = h;
+        }
+    }
+}
             </code></pre>
             </div>
         </div>
@@ -224,7 +296,7 @@ void SelectionSort(int * arr, const int N) {
                 <pre><code>
 // Created by Yuancheng Zhang on 11/20/16.
 
-// 数组递增
+// （递增）
 void InsertionSort::Sort(int * arr, const int N) {
     // 边界检查
     if (arr == 0 || N < 2) {
@@ -256,7 +328,51 @@ void InsertionSort::Sort(int * arr, const int N) {
     <hr>
 
     <div id="blog-20161115-quick">
-        <h4>快速排序 Quicksort</h4>
+        <h4><a href="#blog-20161115-quick-content" data-toggle="collapse">快速排序 Quicksort</a></h4>
+        <div id="blog-20161115-quick-content" class="collapse">
+            <div>
+                <h4><span class="label label-default">算法原理</span></h4>
+            </div>
+            <div>
+                <h4><span class="label label-default">实例分析</span></h4>
+            </div>
+            <div>
+                <h4><span class="label label-default">C++ 语言实现</span></h4>
+                <div>
+                    <pre><code>
+// Created by Yuancheng Zhang on 11/20/16.
+
+// 方法一：递归法（递增）
+void QuickSort(int arr[], int left, int right) {
+    int i = left, j = right;                // 左右index
+    int temp;
+    int pivot = arr[(left + right) / 2];    // pivot可以为任意元素的值
+                                            // 例如arr[i]或arr[j]
+    /* partition */
+    while (i <= j) {                // 保证左右index顺序
+        while (arr[i] < pivot)
+            ++i;                    // 左index向右移动，直到找到一个大于pivot
+        while (arr[j] > pivot)
+            --j;                    // 右index向左移动，直到找到一个小于pivot
+        if (i <= j) {               // 交换数值，继续向内缩小范围
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            ++i;
+            --j;
+        }                           // 最终while停止的时候，顺序一定是j,i
+    };                              // 即(left,...,j,i,...,right)
+
+    /* recursion */
+    if (left < j)
+        QuickSort(arr, left, j);
+    if (i < right)
+        QuickSort(arr, i, right);
+}
+                    </code></pre>
+                </div>
+            </div>
+        </div>
     </div>
 
     <hr>
