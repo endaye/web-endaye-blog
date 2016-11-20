@@ -368,22 +368,23 @@ void swap ( int* a, int* b )
     *b = t;
 }
 
-/* This function is same in both iterative and recursive*/
+/* This function is same in both iterative and recursive */
+/* 讲最后一个数作为pivot，将其放到序列中合适的位置，左边比其小，右边比其大。返回pivot的位置*/
 int partition (int arr[], int l, int h)
 {
-    int x = arr[h];
-    int i = (l - 1);
-
+    int x = arr[h];         // pivot，任意取
+    int i = (l - 1);        // 哨兵，i记录小于pivot序列的尾巴
+                            // j去寻找之后的序列
     for (int j = l; j <= h- 1; j++)
     {
-        if (arr[j] <= x)
+        if (arr[j] <= x)    // j找到了，与i交换
         {
             i++;
             swap (&arr[i], &arr[j]);
         }
     }
     swap (&arr[i + 1], &arr[h]);
-    return (i + 1);
+    return (i + 1);         // 其实是pivot的位置
 }
 
 /* A[] --> Array to be sorted,
@@ -402,7 +403,7 @@ void quickSortIterative (int arr[], int l, int h)
     stack[ ++top ] = h;
 
     // Keep popping from stack while is not empty
-    while ( top >= 0 )
+    while ( top >= 0 )          // 栈里有元素
     {
         // Pop h and l
         h = stack[ top-- ];
