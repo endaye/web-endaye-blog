@@ -8,6 +8,9 @@
         <li><a href="#blog-20161119-xor">异或交换 XOR swap</a></li>
         <li><a href="#blog-20161119-var">加减交换</a></li>
     </ul>
+
+    <hr>
+
     <div id="blog-20161119-basic">
         <h4>普通交换 swap</h4>
         <div>
@@ -25,6 +28,8 @@ void basicSwap (int *x, int *y) {
         </code></pre>
         </div>
     </div>
+
+    <hr>
 
     <div id="blog-20161119-xor">
         <h4>异或交换 XOR swap</h4>
@@ -73,6 +78,8 @@ void xorSwap (int *x, int *y) {
         </div>
     </div>
 
+    <hr>
+
     <div id="blog-20161119-var">
         <h4>加减交换</h4>
         <div>
@@ -104,7 +111,7 @@ void addSwap (unsigned int *x, unsigned int *y)
                 overflow</a>. Therefore, it is seen even more rarely in practice than the XOR swap.
             </p>
             <p>
-                但是在C语言里就算整数溢出了也可以使用，因为C语言使用的是<a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">modular
+                但是<strong>在C语言里就算整数溢出了也可以使用</strong>，因为C语言使用的是<a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">取模运算 modular
                 arithmetic</a>。
             </p>
         </div>
