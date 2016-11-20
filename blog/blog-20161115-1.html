@@ -66,8 +66,8 @@ void BubbleSort(int * arr, const int N) {
 
     // arr[0], ... , arr[N-2], arr[N-2]
     // 永远保持最后一个最大
-    for (i = 0; i < N - 1; i++) {
-        for (j = 0; j < N - 1 - i; j++) {
+    for (i = 0; i < N - 1; ++i) {
+        for (j = 0; j < N - 1 - i; ++j) {
             if (arr[j] > arr[j+1]) {
                 temp = arr[j];
                 arr[j] = arr[j+1];
@@ -85,8 +85,8 @@ void BubbleSort(int * arr, const int N) {
     if(arr == 0 || N < 2) {
         return;
     }
-    for (int i = N - 1; i > 0; i--) {
-        for (int j = 0; j < i; j++) {
+    for (int i = N - 1; i > 0; --i) {
+        for (int j = 0; j < i; ++j) {
             if (arr[j] > arr[j+1]) {
                 arr[j] ^= arr[j+1];     // x ^= y
                 arr[j+1] ^= arr[j];     // y ^= x
@@ -125,7 +125,7 @@ void BubbleSort(int * arr, const int N) {
                 </ol>
                 <p>
                     <img src="http://blog.endaye.com/blog/img/img-20161115-selection-sort-animation.gif"
-                         alt="冒泡排序 Bubble Sort (图片来自维基百科)">
+                         alt="选择排序 Selection Sort (图片来自维基百科)">
                 </p>
             </div>
             <div>
@@ -179,7 +179,75 @@ void SelectionSort(int * arr, const int N) {
     <hr>
 
     <div id="blog-20161115-insert">
-        <h4>插入排序 Insertion sort</h4>
+        <h4><a href="#blog-20161115-insert-content" target="_blank">插入排序 Insertion sort</a></h4>
+        <div id="blog-20161115-insert-content" class="collapse">
+            <div>
+                <h4><span class="label label-default">算法原理</span></h4>
+                <p>
+                    <a href="#blog-20161115-insert">插入排序</a>
+                    是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。
+                </p>
+            </div>
+            <div>
+                <h4><span class="label label-default">算法流程</span></h4>
+                <a href="#blog-20161115-insert">插入排序</a>和打扑克的抓牌的过程类似。<br>
+                牌库的牌：未排序的序列 <br>
+                手中的牌：已排序的序列 <br>
+                抓牌入手：从未排序的序列中选择下一个元素，在已排序的序列查找相应位置，将其插入，其他相应的已排序元素向后移
+                <ol>
+                    <li>从第一个元素开始，该元素可以认为已经被排序</li>
+                    <li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+                    <li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+                    <li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+                    <li>将新元素插入到该位置后</li>
+                    <li>重复步骤2~5</li>
+                </ol>
+                <p>
+                    <img src="http://blog.endaye.com/blog/img/img-20161115-insertion-sort-animation.gif"
+                         alt="插入排序 Insertion Sort (图片来自维基百科)">
+                </p>
+            </div>
+            <div>
+                <h4><span class="label label-default">实例分析</span></h4>
+                <div>
+                    <p>
+                        Click <a href="http://bubkoo.com/2014/01/13/sort-algorithm/insertion-sort/"
+                                 target="_blank">here</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <h4><span class="label label-default">C++ 语言实现</span></h4>
+                <pre><code>
+// Created by Yuancheng Zhang on 11/20/16.
+
+// 数组递增
+void InsertionSort::Sort(int * arr, const int N) {
+    // 边界检查
+    if (arr == 0 || N < 2) {
+        return;
+    }
+
+    // 假设第一个数位置时正确的；要往后移，必须要假设第一个。
+    for (int i = 1; i < N; ++i) {
+
+        int j = i;
+        int target = arr[i]; //待插入的
+
+        // 从i开始，找到目标位置，其余后移
+        while(j > 0 && target < arr[j-1]) {
+            arr[j] = arr[j-1];
+            --j;
+        }
+
+        // 插入
+        arr[j] = target;
+    }
+}
+            </code></pre>
+            </div>
+        </div>
+    </div>
     </div>
 
     <hr>
