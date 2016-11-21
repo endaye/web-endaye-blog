@@ -147,7 +147,7 @@ void BubbleSort(int * arr, const int N) {
                 <h4><span class="label label-default">算法原理</span></h4>
                 <p>
                     <a href="#blog-20161115-select">选择排序</a>的思想其实和<a href="#blog-20161115-bubble">冒泡排序</a>有点类似，都是在一次排序后把最小的元素放到最前面。
-                    但是过程不同，冒泡排序是通过相邻的比较和交换。而选择排序是通过对整体的选择。
+                    但是过程不同，冒泡排序是通过相邻的比较和交换。而选择排序是通过对整体的选择。选择排序也是一种<a href="https://en.wikipedia.org/wiki/Sorting_algorithm#Simple_sorts" target="_blank">简单排序</a>。
                 </p>
                 <p>
                     选择排序的主要优点与数据移动有关。如果某个元素位于正确的最终位置上，则它不会被移动。选择排序每次交换一对元素，它们当中至少有一个将被移到其最终位置上，因此对n个元素的序列进行排序总共进行<strong>至多n-1次交换</strong>。在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。
@@ -181,7 +181,8 @@ void BubbleSort(int * arr, const int N) {
                         <thead>
                         <tr>
                             <th>Property</th>
-                            <td>Not stable, not adaptive</td>
+                            <td>Not stable <br>
+                                Not adaptive</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -259,7 +260,8 @@ void SelectionSort(int * arr, const int N) {
                 <h4><span class="label label-default">算法原理</span></h4>
                 <p>
                     <a href="#blog-20161115-insert">插入排序</a>
-                    是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。
+                    是一种直观的<a href="https://en.wikipedia.org/wiki/Sorting_algorithm#Simple_sorts" target="_blank">简单排序</a>。
+                    它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。
                 </p>
             </div>
             <div>
@@ -285,13 +287,45 @@ void SelectionSort(int * arr, const int N) {
                 <h4><span class="label label-default">实例分析</span></h4>
                 <div>
                     <p>
-                        Click <a href="http://bubkoo.com/2014/01/14/sort-algorithm/insertion-sort/"
-                                 target="_blank">here</a>
-                    </p>
-                    <p>
                         <img src="http://blog.endaye.com/blog/img/img-20161115-insertion-sort-example.gif"
                              alt="插入排序 Insertion Sort (图片来自维基百科)">
                     </p>
+                </div>
+            </div>
+            <div>
+                <h4><span class="label label-default">属性特点</span></h4>
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Property</th>
+                            <td>Stable <br>
+                                Adaptive: O(n) time when nearly sorted</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Data structure</th>
+                            <td>Array</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case performance</th>
+                            <td>O(n<sup>2</sup>)comparisons and swaps</td>
+                        </tr>
+                        <tr>
+                            <th>Best-case performance</th>
+                            <td>O(n) comparisons, O(1) swaps</td>
+                        </tr>
+                        <tr>
+                            <th>Average performance</th>
+                            <td>O(n<sup>2</sup>) comparisons and swaps</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case space complexity</th>
+                            <td>O(n) total, O(1) auxiliary</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div>
@@ -512,6 +546,11 @@ void ShellSort(int * input_array, const int input_array_size) {
         <div id="blog-20161115-merge-content" class="collapse">
             <div>
                 <h4><span class="label label-default">算法原理</span></h4>
+                归并排序是一宗bottom-up的排序方法。先分治，再合并。
+                <p>
+                    <img src="http://blog.endaye.com/blog/img/img-20161115-merge-sort-animation.gif"
+                         alt="归并排序 Merge Sort (图片来自维基百科)">
+                </p>
             </div>
             <div>
                 <h4><span class="label label-default">算法流程</span></h4>
@@ -537,7 +576,44 @@ If r > l
                          alt="归并排序 Merge Sort (图片来自维基百科)">
                 </p>
             </div>
-
+            <div>
+                <h4><span class="label label-default">属性特点</span></h4>
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Property</th>
+                            <td>Stable <br>
+                                Not adaptive <br>
+                                Does not require random access to data</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Data structure</th>
+                            <td>Array</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case performance</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Best-case performance</th>
+                            <td>O(n log n) typical, <br>
+                                O(n) natural variant</td>
+                        </tr>
+                        <tr>
+                            <th>Average performance</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case space complexity</th>
+                            <td>O(n) total, O(n) auxiliary</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
                 <div>
