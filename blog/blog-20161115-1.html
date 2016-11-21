@@ -62,7 +62,7 @@
                         <thead>
                         <tr>
                             <th>Property</th>
-                            <td>Stable, adaptive</td>
+                            <td>Stable <br>Adaptive</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -371,9 +371,47 @@ void InsertionSort::Sort(int * arr, const int N) {
         <div id="blog-20161115-quick-content" class="collapse">
             <div>
                 <h4><span class="label label-default">算法原理</span></h4>
+                <p>
+                    <img src="http://blog.endaye.com/blog/img/img-20161115-quicksort-animation.gif"
+                         alt="快速排序 Quicksort (图片来自维基百科)">
+                </p>
             </div>
             <div>
-                <h4><span class="label label-default">实例分析</span></h4>
+                <h4><span class="label label-default">属性特点</span></h4>
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Property</th>
+                            <td>Not stable <br>Not adaptive</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Data structure</th>
+                            <td>Array</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case performance</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <th>Best-case performance</th>
+                            <td>O(n log n) (simple partition) <br>
+                                O(n) (three-way partition and equal keys)</td>
+                        </tr>
+                        <tr>
+                            <th>Average performance</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst-case space complexity</th>
+                            <td><del>O(n) auxiliary (naive)</del> <br>
+                                O(log n) auxiliary </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div>
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
