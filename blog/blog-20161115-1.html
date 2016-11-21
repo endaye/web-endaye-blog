@@ -444,6 +444,23 @@ void ShellSort(int * input_array, const int input_array_size) {
                 <h4><span class="label label-default">算法原理</span></h4>
             </div>
             <div>
+                <h4><span class="label label-default">算法流程</span></h4>
+                <p>
+                    <pre><code>
+MergeSort(arr[], l,  r)
+If r > l
+     1. Find the middle point to divide the array into two halves:
+             middle m = (l+r)/2
+     2. Call mergeSort for first half:
+             Call mergeSort(arr, l, m)
+     3. Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     4. Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)
+                    </code></pre>
+                </p>
+            </div>
+            <div>
                 <h4><span class="label label-default">实例分析</span></h4>
                 <p>
                     <img src="http://blog.endaye.com/blog/img/img-20161115-merge-sort-example.gif"
@@ -455,6 +472,64 @@ void ShellSort(int * input_array, const int input_array_size) {
                 <h4><span class="label label-default">C++ 语言实现</span></h4>
                 <div>
                     <pre><code>
+// Created by Yuancheng Zhang on 11/20/16.
+
+// 归并排序（递增）
+void merge(int *arr, int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l + 1;     // [  l, m]
+    int n2 = r - m;         // [m+1, r]
+
+    // 两个临时数组
+    int L[n1], R[n2];
+
+    // 将序列拷贝到临时数组L[]和R[]中
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1+ j];
+
+    // 将临时数组L[]R[]中的序列合并到arr[l..r]中
+    i = j = 0;  // L[]和R[]指数归零
+    k = l;      // arr[]指数移动到最左
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            ++i;
+        } else {
+            arr[k] = R[j];
+            ++j;
+        }
+        ++k;
+    }
+
+    // 如果L[]有剩余的序列，考入arr中
+    while (i < n1) {
+        arr[k] = L[i];
+        ++i;
+        ++k;
+    }
+
+    // 如果R[]有剩余的序列，考入arr中
+    while (j < n2) {
+        arr[k] = R[j];
+        ++j;
+        ++k;
+    }
+}
+
+void mergeSort(int *arr, int l, int r) {
+    if (l < r) {
+        int m = (l+r)/2;
+        mergeSort(arr, l, m);       // 左半部
+        mergeSort(arr, m+1, r);     // 右半部
+        merge(arr, l, m, r);        // 合并
+    }
+}
+
+void MergeSort(int * arr, const int N) {
+    mergeSort(arr, 0, N-1);
+}
                     </code></pre>
                 </div>
             </div>
